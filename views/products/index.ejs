@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Patients</title>
+</head>
+<body>
+    <h1>All Patients</h1>
+    <ul>
+        <% for(let i of products){ %>
+            <li>
+                <a href="/patient/<%=i._id%>"><%= i.name  %> </a>
+            </li>
+        <% } %> 
+    </ul>
+    <form action="/products/new">
+        <button>Add new</button>
+    </form>
+</body>
+</html>
