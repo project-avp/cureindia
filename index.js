@@ -29,7 +29,7 @@ app.get('/products',async (req,res)=>{
 app.post('/products',async(req,res)=>{
     const newPatient=new patient(req.body);
     await newPatient.save();
-    console.log(newPatient);
+    //console.log(newPatient);
     res.redirect(`/patient/${newPatient._id}`)
 })
 //showing details of individual
