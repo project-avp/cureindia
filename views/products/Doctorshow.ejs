@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Doctors</title>
+</head>
+<body>
+    <h1>All Doctors</h1>
+    <ol>
+        <% for(let i of doctList){ %>
+            <li>
+                <ul>
+                   <li><%= i.name %></li> 
+                   <li> <%= i. specialisation %>  </li>
+                   <li>
+                        <a href="/doctor/<%= i._id %> "><button>Details</button></a>
+                   </li>
+                </ul>
+                <hr>
+            </li>
+        <% } %> 
+    </ol>
+    <!-- <form action="/products/new">
+        <button>Add new</button>
+    </form> -->
+</body>
+</html>
