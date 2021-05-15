@@ -1,0 +1,22 @@
+.list{
+    background-color: rgb(185, 236, 185);
+    font-family: 'Pangolin', cursive;
+}
+.list1{
+    margin: 2px 4px;
+    font-family: 'Pangolin', cursive;
+}
+.button2{
+    padding: 5px 5px;
+    border-radius: 8px;
+    background-color: white; 
+    color: black; 
+      border: 3px solid #008CBA;
+      font-family: 'Pangolin', cursive;
+ }
+      
+.button2:hover {
+     background-color: #008CBA;
+     color: white;
+     font-family: 'Pangolin', cursive;
+  }
