@@ -66,6 +66,3 @@ app.get('/doctor/:id',async(req,res)=>{
 app.listen(3000,()=>{
     console.log("Connection established PK Again and again");
 })
-
-
-
