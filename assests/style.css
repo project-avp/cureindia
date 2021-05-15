@@ -1,0 +1,25 @@
+.body{
+    background-color: rgb(164, 238, 222);
+}
+.div1{
+    width: 70%;
+    border: 2px solid black;
+    border-radius: 10px;
+    /* text-align: center; */
+    margin-left: 15%;
+    padding: 5% 5%;
+    background-color: rgba(158, 210, 240, 0.493);
+    
+}
+button:hover {
+    background-color: #008CBA;
+    color: white;
+ }
+.newdoc{
+    text-align: center;
+    font-family: 'Pangolin', cursive;
+    align-items: center;
+    color: darkred;
+    background-image: url("https://specials-images.forbesimg.com/imageserve/5edaacf9b6ac5c00076559df/960x0.jpg?fit=scale");
+    
+}
