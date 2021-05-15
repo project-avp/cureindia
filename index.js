@@ -21,6 +21,10 @@ app.use(express.urlencoded({extended:true}));4
 //Styling
 app.use(express.static('assests'));
 
+//Home page
+app.get('/',(req,res)=>{
+    res.render('products/home');
+})
 //New Entry patient
 app.get('/products/new',(req,res)=>{
     res.render('products/new')

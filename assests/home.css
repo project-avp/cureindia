@@ -1,0 +1,33 @@
+body{
+    color: rgb(15, 11, 11);
+
+    background-image: url("https://image.freepik.com/free-vector/doctor-clinic-illustration_1308-27202.jpg");
+    background-size:cover;
+    /* height: auto;
+    background-repeat: no-repeat;
+    background-position: center; */
+}
+.dp{
+    background-color:  rgb(93, 229, 247);
+    border:2px solid black;
+    margin-left: 65%;
+    margin-right: 5%;
+    margin-top: 25%;
+    border-radius: 10px;
+    padding: auto auto;
+}
+.btn{
+    border: 2px solid rgb(54, 34, 165);
+    border-radius: 10px;
+    background-color: rgb(209, 218, 186);
+    margin-left: 75%;
+    margin: 10px;
+    height: 50px;
+    /* width: 50%; */
+    margin: 10px;
+}
+.btn:hover{
+    background-color: rgb(17, 192, 41);
+    color: white;
+    box-shadow: 2px 2px 2px 3px black;
+}
