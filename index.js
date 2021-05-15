@@ -29,7 +29,7 @@ app.get('/products',async (req,res)=>{
 app.post('/products',async(req,res)=>{
     const newPatient=new patient(req.body);
     await newPatient.save();
-    //console.log(newPatient);
+    console.log(newPatient);
     res.redirect(`/patient/${newPatient._id}`)
 })
 //showing details of individual
@@ -64,7 +64,7 @@ app.get('/doctor/:id',async(req,res)=>{
     res.render('products/inddoct',{doct});
 })
 app.listen(3000,()=>{
-    console.log("Well Done");
+    console.log("Well Done Best of luck");
 })
 
 
