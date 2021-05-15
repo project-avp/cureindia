@@ -1,5 +1,6 @@
 .body{
     background-color: rgb(164, 238, 222);
+    
 }
 .div1{
     width: 70%;
@@ -9,6 +10,7 @@
     margin-left: 15%;
     padding: 5% 5%;
     background-color: rgba(158, 210, 240, 0.493);
+    box-shadow: 2px 2px 15px black;
     
 }
 button:hover {
