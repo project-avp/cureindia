@@ -49,7 +49,7 @@ app.get('/patient/:id',async(req,res)=>{
     res.render('products/show',{pat});
 })
 //New Entry for Doctor
-app.get('/Doctor',(req,res)=>{
+app.get('/Doctor',async(req,res)=>{
     res.render('products/newdoct');
 })
 //Data from doctor's signup page
@@ -71,6 +71,15 @@ app.get('/doctor/:id',async(req,res)=>{
     const doct= await doctor.findById(id)
     console.log(doct);
     res.render('products/inddoct',{doct});
+})
+//Doctor Signin
+app.get('/signinDoctor',async(req,res)=>{
+    res.render('products/signind');
+})
+
+//Patients Signin
+app.get('/signinPatients',async(req,res)=>{
+    res.render('products/signinp');
 })
 app.listen(3000,()=>{
     console.log("Connection established ab Again and again");
