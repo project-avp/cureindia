@@ -64,5 +64,5 @@ app.get('/doctor/:id',async(req,res)=>{
     res.render('products/inddoct',{doct});
 })
 app.listen(3000,()=>{
-    console.log("Connection established PK Again and again");
+    console.log("Connection established ab Again and again");
 })
