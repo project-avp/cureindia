@@ -64,7 +64,7 @@ app.get('/doctor/:id',async(req,res)=>{
     res.render('products/inddoct',{doct});
 })
 app.listen(3000,()=>{
-    console.log("Well Done Best of luck");
+    console.log("Connection established");
 })
 
 
