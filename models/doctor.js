@@ -4,6 +4,10 @@ const doctSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    fees:{
+        type:Number,
+        required:true
+    },
     specialisation:{
         type:String,
         required:true
@@ -14,6 +18,7 @@ const doctSchema = new mongoose.Schema({
     },
     email:{
         type:String,
+        unique:true,
         required:true
     },
     address:{
@@ -21,7 +26,8 @@ const doctSchema = new mongoose.Schema({
         required:true
     },
     password:{
-        type:String
+        type:String,
+        required:true
     },
     rogi:[
         {
