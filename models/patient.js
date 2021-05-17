@@ -18,7 +18,8 @@ const patientSchema=new mongoose.Schema({
         required:true
     },
     password:{
-        type:String
+        type:String,
+        required:true
     }
 })
 const patient=mongoose.model('patient',patientSchema);

@@ -1,7 +1,11 @@
 const express=require('express');
 const app=express();
 const passport=require('passport');
+// const passportpatient= require('../cureindia/config/passportP');
 const passportLocal= require('../cureindia/config/passort');
+// const passportpatient= require('../cureindia/config/passportP');
+// const passportLocal= require('../cureindia/config/passort');
+
 const session=require('express-session');
 const MongoStore=require('connect-mongodb-session')(session);
 const path=require('path');
@@ -21,12 +25,22 @@ app.set('views',path.join(__dirname,'views'));
 app.set('view engine','ejs');
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
-//session description
+
+// app.get('/doc',(req,res)=>{
+//     const passportLocal= require('../cureindia/config/passort');
+//     return res.redirect('/');
+// })
+
+// app.get('/pat',(req,res)=>{
+//     const passportpatient= require('../cureindia/config/passportP');
+//     return res.redirect('/');
+// })
 app.use(session({
     name:'CureIndia',
     secret:'bgbgbgbg',
     saveUninitialized:false,
     resave:false,
+    
     cookie:{
         maxAge:(1000*60*100)
         },
@@ -44,6 +58,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 //Styling
 app.use(express.static('assests'));
@@ -63,12 +78,40 @@ app.get('/products',async (req,res)=>{
     res.render('products/index',{products});
 })
 //Taking data from Patient
-app.post('/products',async(req,res)=>{
-    const newPatient=new patient(req.body);
-    await newPatient.save();
-    console.log(newPatient);
-    res.redirect(`/patient/${newPatient._id}`)
+app.post('/products',(req,res)=>{
+
+    if(req.body.password!=req.body.cPpassword)
+    {
+        return res.redirect('/products');
+    }
+    patient.findOne({email:req.body.email}, function(err,user){
+        if(err)
+        {
+            console.log("Error hai bhai");
+            return ;
+        }
+        else
+        if(!user)
+        {
+            const newpatient=new patient(req.body);
+            newpatient.save();
+            return res.redirect('/signinPatients');
+        }
+        else
+        {
+            console.log("User already exists");
+            return res.redirect(`/products`);
+        }
+    })
+
+    // const newPatient=new patient(req.body);
+    // await newPatient.save();
+    // console.log(newPatient);
+    // res.redirect(`/patient/${newPatient._id}`)
 })
+
+
+
 //showing details of individual
 app.get('/patient/:id',async(req,res)=>{
     const {id}=req.params;
@@ -128,6 +171,7 @@ app.get('/doctor/:id',async(req,res)=>{
 })
 //Doctor Signin
 app.get('/signinDoctor',(req,res)=>{
+   
     if(req.isAuthenticated())
     {
         return res.redirect('/');
@@ -141,12 +185,65 @@ app.post('/signinDoctor',passport.authenticate('local',{failureRedirect:'/signin
 app.get('/profileD',(req,res)=>{
     return res.render('products/doctorprofile');
 })
+
 //Patients Signin
 app.get('/signinPatients',(req,res)=>{
     res.render('products/signinp');
 })
+// const passportpatient= require('../cureindia/config/passportP');
+//Ptient Signin
+app.post('/signinPatients',(req,res)=>{
+    
+    patient.findOne({email:req.body.email},function(err,user){
+        if(err){
+            console.log('error in finding user while signing in');
+            return
+        }
+         //handle user found
+        if(user){
+            //handle password which doesn't match
+            if(user.password!=req.body.password){
+                return res.redirect('back');
+            }
+            //handle session creation
+            res.cookie('user_id',user.id);
+            // const detail=req.body;
+            return res.render('products/patientprofile',{user:user});
+        }else{
+             //handle user not found
+            return res.redirect('back');
+        }
+    });
+    // req.flash('success','Logged in Successfully');
+//    return res.redirect('/profileP');
+})
+
+//Patient signin data
+// app.post('/signinPatients',passport.authenticate('local',{failureRedirect:'/signinPatients'}),function(req,res){
+//     return res.redirect('/profileP');
+// })
+
+app.get('/profileP',(req,res)=>{
+
+    return res.render('products/patientprofile',{user:req.body});
+})
+
 app.get('/logout',(req,res)=>{
     req.logout();
+    // req.session.destroy(function (err) {
+    //    return res.redirect('/'); //Inside a callback… bulletproof!
+    //   });
+    return res.redirect('/');
+})
+// app.get('/logoutp',(req,res)=>{
+//     // req.logout();
+//     // res.session.user=NULL;
+//     res.clearCookie('nToken');
+//     // cookie.Expires = DateTime.Now.AddDays(-1);
+//     return res.redirect('/');
+// })
+app.post('/logoutP',(req,res)=>{
+    req.session.user_id=null;
     return res.redirect('/');
 })
 app.listen(3000,()=>{

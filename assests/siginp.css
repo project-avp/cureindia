@@ -1,29 +1,24 @@
-.body{
+body{
     background-color: rgb(164, 238, 222);
+    background-image: url("https://wallpapercave.com/wp/wp2469683.jpg");
+    object-fit: fill;
 }
 h1{
     color: black;
 }
 .div1{
     width: 70%;
+    color: white;
     border: 2px solid black;
     border-radius: 10px;
     /* text-align: center; */
-    margin-left: 15%;
+    margin-left: 10%;
+    font-size:20px;
     padding: 5% 5%;
     background-image: linear-gradient(to right, rgb(1, 11, 37) , rgb(182, 176, 176));
     box-shadow: 2px 2px 15px black;
-    
 }
 button:hover {
     background-color: #008CBA;
     color: white;
  }
-.newdoc{
-    text-align: center;
-    font-family: 'Pangolin', cursive;
-    align-items: center;
-    color: rgb(250, 250, 250);
-    background-image: url("https://specials-images.forbesimg.com/imageserve/5edaacf9b6ac5c00076559df/960x0.jpg?fit=scale");
-    
-}
