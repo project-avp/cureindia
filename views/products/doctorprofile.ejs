@@ -7,9 +7,13 @@
     <title>Document</title>
 </head>
 <body>
+   
+   <h1><%= doct.name %></h1>
+    <hr>
+    <a  href="/mypatients/<%= doct._id %> "> my list </a>
     <hr>
         <%if(locals.user){ %>
-            <a href="/logout"><button >Bahar nikalne ka rasta</button></a>
+            <a href="/logout"><button >logout</button></a>
         <%   } 
         else
         { %>

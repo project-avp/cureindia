@@ -5,8 +5,8 @@ const doctSchema = new mongoose.Schema({
         required:true
     },
     fees:{
-        type:Number,
-        required:true
+        type:Number
+     //   required:true
     },
     specialisation:{
         type:String,
@@ -32,7 +32,7 @@ const doctSchema = new mongoose.Schema({
     rogi:[
         {
             type:mongoose.Schema.Types.ObjectId,
-            ref:"rogi"
+            ref:"patient"
         }
     ]
 })
