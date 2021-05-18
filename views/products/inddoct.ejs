@@ -15,8 +15,9 @@
     <h4>Fees - <%=   doct.fees %></h4>
     <h4>Email - <%=   doct.email %></h4>
     <h4>Address - <%= doct.address %></h4>
-    <button class="btn btn-success">Book</button>
-    
+    <form action="/booking/<%= doct._id %>" method="POST">
+        <button class="btn btn-success">Book</button>
+    </form>
     <a href="/DisplayDoct"><button class="btn btn-danger">Back</button></a>
     </div>
 </body>

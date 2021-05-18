@@ -63,7 +63,8 @@ app.use(passport.session());
 //Styling
 app.use(express.static('assests'));
 app.use(passport.setAuthenticatedUser);
-
+// current session id
+var currentsessionid = null;
 //Home page
 app.get('/',(req,res)=>{
     res.render('products/home');
@@ -179,11 +180,22 @@ app.get('/signinDoctor',(req,res)=>{
     res.render('products/signind'); //profile
 })
 //Doctor signin data
-app.post('/signinDoctor',passport.authenticate('local',{failureRedirect:'/signinDoctor'}),function(req,res){
-    return res.redirect('/profileD');
+app.post('/signinDoctor',passport.authenticate('local',{failureRedirect:'/signinDoctor'}),async function(req,res){
+    const doct = await doctor.findOne({"email": req.body.email }).populate('rogi');
+    res.redirect(`/profileD/${doct._id}`);
 })
-app.get('/profileD',(req,res)=>{
-    return res.render('products/doctorprofile');
+app.get('/profileD/:id', async (req,res)=>{
+  //  console.log(req.params);
+    const {id} = req.params;
+    const doct = await doctor.findById(id).populate('rogi');
+  //  console.log(doct);
+    return res.render('products/doctorprofile',{doct});
+})
+
+app.get('/mypatients/:id',async(req,res)=>{
+    const {id} = req.params;
+    const doct = await doctor.findById(id).populate('rogi');
+    res.render('products/mypatients',{doct});
 })
 
 //Patients Signin
@@ -208,6 +220,7 @@ app.post('/signinPatients',(req,res)=>{
             //handle session creation
             res.cookie('user_id',user.id);
             // const detail=req.body;
+            currentsessionid = user.id;
             return res.render('products/patientprofile',{user:user});
         }else{
              //handle user not found
@@ -246,6 +259,15 @@ app.post('/logoutP',(req,res)=>{
     req.session.user_id=null;
     return res.redirect('/');
 })
+
+app.post('/booking/:id',async(req,res)=>{
+    const doct = await doctor.findById(req.params.id);
+    const pat = await patient.findById(currentsessionid);
+    doct.rogi.push(pat);
+    await doct.save();
+    res.redirect("/profileP");
+})
+
 app.listen(3000,()=>{
     console.log("Connection established ab Again and again");
 })
